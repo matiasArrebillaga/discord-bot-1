@@ -1,6 +1,11 @@
 const { SlashCommandBuilder } = require('discord.js')
-const fetch = require('node-fetch')
-const url = 'http://api.giphy.com/v1/gifs/search?q='
+const Tenor = require('tenorjs').client({
+  Key: process.env.GIF_KEY, // https://developers.google.com/tenor/guides/quickstart
+  Filter: 'off', // "off", "low", "medium", "high", not case sensitive
+  Locale: 'en_US', // Your locale here, case-sensitivity depends on input
+  MediaFilter: 'minimal', // either minimal or basic, not case sensitive
+  DateFormat: 'D/MM/YYYY - H:mm:ss A' // Change this accordingly
+})
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -13,8 +18,11 @@ module.exports = {
     ),
   async execute (interaction) {
     const gifWord = interaction.options.getString('word')
-    const response = await fetch(`${url}${gifWord}&api_key=${process.env.GIF_KEY}&lang=es`)
-    const json = await response.json()
-    await interaction.reply(json.data[Math.floor(Math.random() * json.data.length)].url)
+
+    Tenor.Search.Query(gifWord, '1').then(Results => {
+      Results.forEach(async Post => {
+        await interaction.reply(Post.url)
+      })
+    }).catch(console.error)
   }
 }
