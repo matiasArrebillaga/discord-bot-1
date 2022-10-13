@@ -52,10 +52,9 @@ client.on('interactionCreate', async interaction => {
   await interaction.reply(`${interaction.user.username}, juega con esta de nuevo si queres pete`)
 })
 
-client.once('messageCreate', async interaction => {
+client.on('messageCreate', async interaction => {
   if (interaction.content === 'm!start') {
-    deployCommands(interaction.guildId)
-    await interaction.reply('Ahi esta pa')
+    deployCommands(interaction)
   } else if (interaction.content === 'm!help') {
     const embed = createEmbed()
     await interaction.reply({ embeds: [embed], files: ['./images/mate.jpg', './images/dragonite.jpg', './images/shinji.jpg'] })

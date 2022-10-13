@@ -1,5 +1,5 @@
 
-module.exports = (guildId) => {
+module.exports = (interaction) => {
   const fs = require('node:fs')
   const path = require('node:path')
   const { REST, Routes } = require('discord.js')
@@ -17,7 +17,7 @@ module.exports = (guildId) => {
 
   const rest = new REST({ version: '10' }).setToken(process.env.TOKEN)
 
-  rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, guildId), { body: commands })
-    .then((data) => console.log(`Successfully registered ${data.length} application commands.`))
+  rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, interaction.guildId), { body: commands })
+    .then(async () => await interaction.reply('Ahi esta pa'))
     .catch(console.error)
 }
