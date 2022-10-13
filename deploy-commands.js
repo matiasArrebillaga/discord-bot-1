@@ -19,7 +19,7 @@ module.exports = (interaction) => {
 
   rest.put(Routes.applicationGuildCommands(process.env.CLIENT_ID, interaction.guildId), { body: commands })
     .then(async (data) => {
-      console.log(`Succefully deploy of ${data.length} commands`)
+      console.log(`Successfully deploy of ${data.length} commands`)
       await interaction.reply('Ahi esta pa')
     })
     .catch(console.error)
