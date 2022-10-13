@@ -2,6 +2,8 @@ const fs = require('node:fs')
 const path = require('node:path')
 const { Client, GatewayIntentBits, Collection } = require('discord.js')
 require('dotenv').config()
+const deployCommands = require('./deploy-commands')
+const createEmbed = require('./embed')
 
 const client = new Client({
   intents: [
@@ -47,7 +49,16 @@ client.on('interactionCreate', async interaction => {
 
 client.on('interactionCreate', async interaction => {
   if (!interaction.isButton()) return
-  interaction.reply(`${interaction.user.username}, no existen las revanchas pete`)
+  await interaction.reply(`${interaction.user.username}, no existen las revanchas pete`)
+})
+
+client.on('messageCreate', async interaction => {
+  if (interaction.content === 'm!start') {
+    deployCommands(interaction.guildId)
+  } else if (interaction.content === 'm!help') {
+    const embed = createEmbed()
+    await interaction.reply({ embeds: [embed], files: ['./images/mate.jpg', './images/dragonite.jpg', './images/shinji.jpg'] })
+  }
 })
 
 client.login(process.env.TOKEN)
