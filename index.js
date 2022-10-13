@@ -49,7 +49,7 @@ client.on('interactionCreate', async interaction => {
 
 client.on('interactionCreate', async interaction => {
   if (!interaction.isButton()) return
-  await interaction.reply(`${interaction.user.username}, juega con esta de nuevo si queres pete`)
+  await interaction.reply(`${interaction.user.username}, juga con esta de nuevo si queres pete`)
 })
 
 client.on('messageCreate', async interaction => {
