@@ -5,6 +5,6 @@ module.exports = {
     .setName('mate')
     .setDescription('Pedis un mate'),
   async execute (interaction) {
-    await interaction.reply('Tomate un mate pa')
+    await interaction.reply('Toma un matecito pa')
   }
 }
