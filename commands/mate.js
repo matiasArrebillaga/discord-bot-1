@@ -8,6 +8,6 @@ module.exports = {
     setTimeout(() => {
       interaction.channel.send('https://tenor.com/view/12753621')
     }, 1000)
-    await interaction.reply('Toma un matecito pa 🧉')
+    await interaction.reply('Toma un matecito pa 🧉   ')
   }
 }
