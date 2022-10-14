@@ -17,14 +17,18 @@ module.exports = {
         .setRequired(true)
     ),
   async execute (interaction) {
-    const gifWord = interaction.options.getString('word')
+    let gifWord = interaction.options.getString('word')
 
-    Tenor.Search.Query(gifWord, '15').then(async Results => {
+    if (!gifWord) {
+      gifWord = 'undefined'
+    }
+
+    Tenor.Search.Query(gifWord, '25').then(async Results => {
       const gifs = []
       Results.forEach(Post => {
         gifs.push(Post)
       })
-      await interaction.reply(gifs[Math.floor(Math.random() * 14)].url)
+      await interaction.reply(gifs[Math.floor(Math.random() * 25)].url)
     }).catch(console.error)
   }
 }
