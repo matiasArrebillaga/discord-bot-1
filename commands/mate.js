@@ -5,6 +5,9 @@ module.exports = {
     .setName('mate')
     .setDescription('Pedis un mate'),
   async execute (interaction) {
-    await interaction.reply('https://tenor.com/view/tea-mate-gif-12753621\nToma un matecito pa')
+    setTimeout(() => {
+      interaction.channel.send('https://tenor.com/view/12753621')
+    }, 1000)
+    await interaction.reply('Toma un matecito pa 🧉')
   }
 }
